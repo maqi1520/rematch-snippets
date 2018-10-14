@@ -21,6 +21,7 @@ There you have either the option to show the already installed snippets or insta
 
 create a rematch store
 ![create react component](images/component.gif)
+
 Create a rematch model class with ES6 module for list table
 ![create react stateless component](images/stateless.gif)
 
