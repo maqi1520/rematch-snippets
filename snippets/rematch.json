@@ -1,0 +1,140 @@
+{
+  "rematch Model": {
+    "prefix": "rematch-m",
+    "body": [
+      "import produce from 'immer';",
+      "",
+      "export default {",
+      "\tstate: {",
+      "\t\tdata: [],",
+      "\t\ttotal: 0,",
+      "\t\tpageSize: 10,",
+      "\t\tpageNum: 1,",
+      "\t\tquery: ''",
+      "\t},",
+      "",
+      "\treducers: {",
+      "\t\tsetState: (state, payload) =>",
+      "\t\t\tproduce(state, draft => {",
+      "\t\t\t\treturn { ...draft, ...payload };",
+      "\t\t\t})",
+      "\t},",
+      "\teffects: {",
+      "\t\tasync query(payload, rootState) {",
+      "\t\t\tconst { ${1:${TM_FILENAME_BASE}}, routing } = rootState;",
+      "\t\t\tconst pathname = routing.locationBeforeTransitions.pathname;",
+      "\t\t\tconst { query, pageSize, pageNum } = { ...${1:${TM_FILENAME_BASE}}, ...payload };",
+      "",
+      "\t\t\tconst res = await Request({",
+      "\t\t\t\ttype: 'GET',",
+      "\t\t\t\turl: '${2:url}',",
+      "\t\t\t\tdata: { query, pageSize, pageNum }",
+      "\t\t\t});",
+      "\t\t\tthis.setState({",
+      "\t\t\t\tdata: res.dataList,",
+      "\t\t\t\ttotal: res.totalRecords,",
+      "\t\t\t\tquery,",
+      "\t\t\t\tpageNum,",
+      "\t\t\t\tpageSize",
+      "\t\t\t});",
+      "\t\t}",
+      "\t}",
+      "};",
+      ""
+    ],
+    "description": "Create a rematch model class with ES6 module for list table"
+  },
+  "Rematch teffects get": {
+    "prefix": "rematch-get",
+    "body": [
+      "async get({ id }, rootState) {",
+      "\tconst res = await Request({",
+      "\ttype: 'GET',",
+      "\t\turl: ${0:url},",
+      "\t\tdata: {",
+      "\t\t\tid",
+      "\t\t}",
+      "\t});",
+      "\tthis.setState(res)",
+      "},"
+    ],
+    "description": "Rematch teffects get"
+  },
+  "Rematch teffects update": {
+    "prefix": "rematch-upd",
+    "body": [
+      "async update(payload, rootState) {",
+      "\tconst res = await Request({",
+      "\t\ttype: 'PUT',",
+      "\t\turl: '${0:url}',",
+      "\t\tdata: {",
+      "\t\t...payload",
+      "\t\t}",
+      "\t});",
+      "\tStore.dispatch(push('/${1:listUrl}'))",
+      "}"
+    ],
+    "description": "Rematch teffects update"
+  },
+  "Rematch teffects create": {
+    "prefix": "rematch-cre",
+    "body": [
+      "async create(payload, rootState) {",
+      "\tconst res = await Request({",
+      "\t\ttype: 'POST',",
+      "\t\turl: '${0:url}',",
+      "\t\tdata: {",
+      "\t\t...payload",
+      "\t\t}",
+      "\t});",
+      "\tStore.dispatch(push('/${1:listUrl}'))",
+      "}"
+    ],
+    "description": "Rematch teffects create"
+  },
+  "Rematch teffects delete": {
+    "prefix": "rematch-del",
+    "body": [
+      "async delete({id}, rootState) {",
+      "\tconst res = await Request({",
+      "\t\ttype: 'DELETE',",
+      "\t\turl: '${0:url}',",
+      "\t\tdata: id",
+      "\t });",
+      "\tStore.dispatch.${0:list}.query();",
+      "},"
+    ],
+    "description": "Rematch teffects delete"
+  },
+  "Rematch store": {
+    "prefix": "rematch-store",
+    "body": [
+      "import { init } from '@rematch/core';",
+      "import loadingPlugin from '@rematch/loading';",
+      "import { routerMiddleware, syncHistoryWithStore, routerReducer as routing } from 'react-router-redux';",
+      "import createHashHistory from 'history/createHashHistory'",
+      "import models from './models/index';",
+      "const HashRouter = createHashHistory()",
+      "const loading = loadingPlugin();",
+      "const initialState = {",
+      "\tinitialState: window.initialState",
+      "};",
+      "const store = init({",
+      "\tplugins: [loading],",
+      "\tmodels,",
+      "\tredux: {",
+      "\t\tinitialState,",
+      "\t\tmiddlewares: [routerMiddleware(history)],",
+      "\t\treducers: {",
+      "\t\t\trouting",
+      "\t\t}",
+      "\t}",
+      "});",
+      "",
+      "export const history = syncHistoryWithStore(HashRouter, store);",
+      "export default store;",
+      ""
+    ],
+    "description": "Create a rematch store"
+  }
+}
