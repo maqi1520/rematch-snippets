@@ -2,6 +2,10 @@
 
 ## VS Code Reactjs rematch snippets
 
+[![Version](https://vsmarketplacebadge.apphb.com/version/maqi1520.rematch-snippets.svg)](https://vsmarketplacebadge.apphb.com/version-short/maqi1520.rematch-snippets.svg)
+[![Install](https://vsmarketplacebadge.apphb.com/installs/maqi1520.rematch-snippets.svg)](https://vsmarketplacebadge.apphb.com/installs-short/maqi1520.rematch-snippets.svg)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating-short/maqi1520.rematch-snippets.svg)](https://vsmarketplacebadge.apphb.com/rating-short/maqi1520.rematch-snippets.svg)
+
 ---
 
 ## Installation
@@ -15,11 +19,9 @@ There you have either the option to show the already installed snippets or insta
 
 ## Usage
 
-When installing the extension React development could be really fun
+create a rematch store
 ![create react component](images/component.gif)
-
-As VS Code from version 0.10.10 supports React components syntax inside js files the snippets are available for JavaScript language as well.
-In the following example you can see the usage of a React stateless component with prop types snippets inside a js and not jsx file.
+Create a rematch model class with ES6 module for list table
 ![create react stateless component](images/stateless.gif)
 
 ## Snippets
@@ -33,6 +35,10 @@ In the following example you can see the usage of a React stateless component wi
 |   `rematch-cre→` | Rematch teffects create                                     |
 |   `rematch-upd→` | Rematch teffects update                                     |
 
-[react]: https://facebook.github.io/react/
-[babelsublime]: https://github.com/babel/babel-sublime-snippets
-[javacript]: https://github.com/xabikos/vscode-javascript
+## Dependencies
+
+- [react](https://facebook.github.io/react/)
+
+- [rematch](https://github.com/rematch/rematch)
+- [react-router-redux](https://github.com/reactjs/react-router-redux)
+- [immer](https://github.com/mweststrate/immer)
